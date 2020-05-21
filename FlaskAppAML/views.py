@@ -12,7 +12,7 @@ from FlaskAppAML import app
 from FlaskAppAML.forms import SubmissionForm
 
 BRAIN_ML_KEY=os.environ.get('API_KEY', "6LgM3hobpFQkecNPOBz2QRHvSIzYJLdQBfahZtC49sPMjiOwIiNMAAtALXDNuZK1zE3DTzsKoJB4yvfZkSmDTQ==")
-BRAIN_URL = os.environ.get('URL', "https://ussouthcentral.services.azureml.net/workspaces/1ebda07f5b83468fa934325b157c5759/services/00d11b98f56946f286a640541b35f9ec/execute?api-version=2.0&details=true")
+BRAIN_URL = os.environ.get('URL', "https://ussouthcentral.services.azureml.net/workspaces/1ebda07f5b83468fa934325b157c5759/services/00d11b98f56946f286a640541b35f9ec/execute?api-version=2.0&format=swagger")
 # Deployment environment variables defined on Azure (pull in with os.environ)
 
 # Construct the HTTP request header
@@ -63,27 +63,50 @@ def home():
       ],
       "Values": [
         [
-          "1",
-          form.Date.data,
-          form.Open.data,
-          form.High.data,
-          form.Low.data,
-          form.Close.data,
-          form.Volume.data,
-          form.T3_Vol_Diff.data,
-          form.T3_Close_Diff.data,
-          form.T3_Open_Diff.data,
-          form.T2_Vol_Diff.data,
-          form.T2_Close_Diff.data,
-          form.T2_Open_Diff.data,
-          form.T1_Vol_Diff.data,
-          form.T1_Close_Diff.data,
-          form.T1_Open_Diff.data,
-          form.Prior_Day_Vert_Delta_Ratio.data,
-          form.Prior_Day_Derivative.data,
-          "1",
-          "1",
-          "1"
+          # "0",
+          # "5/31/2020",
+          # form.Open.data,
+          # form.High.data,
+          # form.Low.data,
+          # form.Close.data,
+          # form.Volume.data,
+          # form.T3_Vol_Diff.data,
+          # form.T3_Close_Diff.data,
+          # form.T3_Open_Diff.data,
+          # form.T2_Vol_Diff.data,
+          # form.T2_Close_Diff.data,
+          # form.T2_Open_Diff.data,
+          # form.T1_Vol_Diff.data,
+          # form.T1_Close_Diff.data,
+          # form.T1_Open_Diff.data,
+          # form.Prior_Day_Vert_Delta_Ratio.data,
+          # form.Retracement_Signal.data,
+          # form.Prior_Day_Derivative.data,
+          # "0",
+          # "0",
+          # "0"
+          "0",
+          "5/31/2020 12:00:00 AM",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
         ]
       ]
     }
@@ -92,8 +115,8 @@ def home():
 }
 
         # Serialize the input data into json string
-        body = str.encode(json.dumps(data))
-
+        body = (json.dumps(data))
+# str.encode
         # Formulate the request
         #req = urllib.request.Request(URL, body, HEADERS)
         req = urllib.request.Request(BRAIN_URL, body, HEADERS)
@@ -156,8 +179,8 @@ def do_something_pretty(jsondata):
 
     # We only want the first array from the array of arrays under "Value" 
     # - it's cluster assignment and distances from all centroid centers from k-means model
-    value = jsondata["Results"]["output1"]["value"]["Values"][1]
-    #valuelen = len(value)
+    value = jsondata["Results"]["output1"][0]
+    # valuelen = len(value)
     print(value)
     # Convert values (a list) to a list of tuples [(cluster#,distance),...]
     # valuetuple = list(zip(range(valuelen-1), value[1:(valuelen)]))
@@ -170,7 +193,7 @@ def do_something_pretty(jsondata):
     # Build a placeholder for the cluster#,distance values
     #repstr = '<tr><td>%d</td><td>%s</td></tr>' * (valuelen-1)
     # print(repstr)
-    output='For the given date and relevant features: '+value[2]+ "<br/>Our Algorithm would calculate the T+1 close price to be: "+ value[22]
+    output='For the given date and relevant features: '+value["Date"]+ "<br/>Our Algorithm would calculate the T+1 close price to be: "+ value["Scored Labels"]
     # Build the entire html table for the results data representation
     #tablestr = 'Cluster assignment: %s<br><br><table border="1"><tr><th>Cluster</th><th>Distance From Center</th></tr>'+ repstr + "</table>"
     #return tablestr % data
