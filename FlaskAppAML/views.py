@@ -63,7 +63,27 @@ def home():
       ],
       "Values": [
         [
-          #Form variable references
+          "1",
+          form.Date.data,
+          form.Open.data,
+          form.High.data,
+          form.Low.data,
+          form.Close.data,
+          form.Volume.data,
+          form.T3_Vol_Diff.data,
+          form.T3_Close_Diff.data,
+          form.T3_Open_Diff.data,
+          form.T2_Vol_Diff.data,
+          form.T2_Close_Diff.data,
+          form.T2_Open_Diff.data,
+          form.T1_Vol_Diff.data,
+          form.T1_Close_Diff.data,
+          form.T1_Open_Diff.data,
+          form.Prior_Day_Vert_Delta_Ratio.data,
+          form.Prior_Day_Derivative.data,
+          "1",
+          "1",
+          "1"
         ]
       ]
     }
@@ -136,7 +156,7 @@ def do_something_pretty(jsondata):
 
     # We only want the first array from the array of arrays under "Value" 
     # - it's cluster assignment and distances from all centroid centers from k-means model
-    value = jsondata["Results"]["output1"]["value"]["Values"][0]
+    value = jsondata["Results"]["output1"]["value"]["Values"][1]
     #valuelen = len(value)
     print(value)
     # Convert values (a list) to a list of tuples [(cluster#,distance),...]

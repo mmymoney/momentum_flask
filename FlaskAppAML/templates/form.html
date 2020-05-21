@@ -7,14 +7,103 @@
         <p>
             <h3>Size</h3>
             Enter the date for which you'd like to predict the T+1 close price. <br/><br/>
-            {{form.title}}
+            {{form.Date}}
         </p>
 
         <p>
-            <h3>Name the Brain (optional)</h3> 
-          You can give a name reference to your prediction, if you like.<br /><br />
-            {{form.text}}
+            <h3>Open Price</h3> 
+          What was the open price on the date you've selected?<br /><br />
+            {{form.Open}}
         </p>
+        <p>
+            <h3>High Price</h3> 
+          What was the high price on the date you've selected?<br /><br />
+            {{form.High}}
+        </p>
+        <p>
+            <h3>Low Price</h3> 
+          What was the low price on the date you've selected?<br /><br />
+            {{form.Low}}
+        </p>
+        <p>
+            <h3>Close Price</h3> 
+          What was the close price on the date you've selected?<br /><br />
+            {{form.Close}}
+        </p>
+        <p>
+            <h3>T3 Volume Difference</h3> 
+          What was the difference in volume between the date you've selected and 3 days prior?<br /><br />
+            {{form.T3_Vol_Diff}}
+        </p>
+        <p>
+            <h3>T3 Close Difference</h3> 
+            What was the difference in close price between the date you've selected and 3 days prior<br /><br />
+            {{form.T3_Close_Diff}}
+        </p>
+        <p>
+            <h3>T3 Open Difference</h3> 
+            What was the difference in open price between the date you've selected and 3 days prior<br /><br />
+            {{form.T3_Open_Diff}}
+        </p>
+        <p>
+            <h3>T2 Volume Difference</h3> 
+          What was the difference in volume between the date you've selected and 2 days prior?<br /><br />
+            {{form.T2_Vol_Diff}}
+        </p>
+        <p>
+            <h3>T2 Close Difference</h3> 
+            What was the difference in close price between the date you've selected and 2 days prior<br /><br />
+            {{form.T2_Close_Diff}}
+        </p>
+        <p>
+            <h3>T2 Open Difference</h3> 
+            What was the difference in open price between the date you've selected and 2 days prior<br /><br />
+            {{form.T2_Open_Diff}}
+        </p>
+        <p>
+            <h3>T1 Volume Difference</h3> 
+          What was the difference in volume between the date you've selected and 1 day prior?<br /><br />
+            {{form.T1_Vol_Diff}}
+        </p>
+        <p>
+            <h3>T1 Close Difference</h3> 
+            What was the difference in close price between the date you've selected and 1 day prior<br /><br />
+            {{form.T1_Close_Diff}}
+        </p>
+        <p>
+            <h3>T1 Open Difference</h3> 
+            What was the difference in open price between the date you've selected and 1 day prior<br /><br />
+            {{form.T1_Open_Diff}}
+        </p>
+        <p>
+            <h3>Prior Day Vertical Delta Ratio</h3> 
+            What was the ratio of (high - low prices) for the day you selected, relative to the day prior?<br /><br />
+            {{form.Prior_Day_Vert_Delta_Ratio}}
+        </p>
+        <p>
+            <h3>Retracement Signal</h3> 
+            What was the ratio of (High - Close prices) relative to (High - Low prices) for the day you selected?<br /><br />
+            {{form.Retracement_Signal}}
+        </p>
+        <p>
+            <h3>Prior Day Derivative</h3> 
+            What was the derivative of the priod day vertical delta ratio (-sin(x))?<br /><br />
+            {{form.Prior_Day_Derivative}}
+        </p>
+        <h3>T+1 Close Price</h3> 
+        What was the difference in volume between the date you've selected and 1 day prior?<br /><br />
+          {{form.Tpls1Close}}
+      </p>
+      <p>
+          <h3>T+2 Close Price</h3> 
+          What was the difference in close price between the date you've selected and 1 day prior<br /><br />
+          {{form.Tpls2Close}}
+      </p>
+      <p>
+          <h3>T+3 Close Price</h3> 
+          What was the difference in open price between the date you've selected and 1 day prior<br /><br />
+          {{form.Tpls3Close}}
+      </p>
     </dl>
     <p><input type="submit" value="submit"</p>
  </form>
