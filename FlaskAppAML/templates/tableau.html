@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <script type="text/javascript"
+	    src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script type="text/javascript">
+        function initViz() {
+            var containerDiv = document.getElementById("vizContainer"),
+                url = "https://public.tableau.com/views/Momentum_1_15900992255850/Dashboard1?:display_count=y&publish=yes&:origin=viz_share_link",
+                options = {
+                    hideTabs: true,
+                    onFirstInteractive: function () {
+                        console.log("Run this code when the viz has finished loading.");
+                    }
+                };
+
+            var viz = new tableau.Viz(containerDiv, url, options);
+            // Create a viz object and embed it in the container div.
+        }
+    </script>
+<h1>SPY prices</h1>
+
+
+<!-- <p onload="initViz();">
+    
+    <div id="vizContainer" style="width:1600px; height:700px;"></div>
+    
+</p> -->
+{% endblock %}

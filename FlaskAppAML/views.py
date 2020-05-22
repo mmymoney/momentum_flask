@@ -11,14 +11,14 @@ from FlaskAppAML import app
 
 from FlaskAppAML.forms import SubmissionForm
 
-BRAIN_ML_KEY=os.environ.get('API_KEY', "6LgM3hobpFQkecNPOBz2QRHvSIzYJLdQBfahZtC49sPMjiOwIiNMAAtALXDNuZK1zE3DTzsKoJB4yvfZkSmDTQ==")
-BRAIN_URL = os.environ.get('URL', "https://ussouthcentral.services.azureml.net/workspaces/1ebda07f5b83468fa934325b157c5759/services/00d11b98f56946f286a640541b35f9ec/execute?api-version=2.0&format=swagger")
+Bayesian_ML_KEY=os.environ.get('API_KEY', "6LgM3hobpFQkecNPOBz2QRHvSIzYJLdQBfahZtC49sPMjiOwIiNMAAtALXDNuZK1zE3DTzsKoJB4yvfZkSmDTQ==")
+Bayesian_URL = os.environ.get('URL', "https://ussouthcentral.services.azureml.net/workspaces/1ebda07f5b83468fa934325b157c5759/services/00d11b98f56946f286a640541b35f9ec/execute?api-version=2.0&details=true")
 # Deployment environment variables defined on Azure (pull in with os.environ)
 
 # Construct the HTTP request header
 # HEADERS = {'Content-Type':'application/json', 'Authorization':('Bearer '+ API_KEY)}
 
-HEADERS = {'Content-Type':'application/json', 'Authorization':('Bearer '+ BRAIN_ML_KEY)}
+HEADERS = {'Content-Type':'application/json', 'Authorization':('Bearer '+ Bayesian_ML_KEY)}
 
 # Our main app page/route
 @app.route('/', methods=['GET', 'POST'])
@@ -56,8 +56,6 @@ def home():
         "Retracement_Signal",
         "Prior_Day_Derivative",
         "T+1_Close",
-        "T+2_Close",
-        "T+3_Close"
       ],
       "Values": [
         [
@@ -78,9 +76,7 @@ def home():
           form.Prior_Day_Vert_Delta_Ratio.data,
           form.Retracement_Signal.data,
           form.Prior_Day_Derivative.data,
-          0,
-          0,
-          0
+          ""
         ]
       ]
     }
@@ -89,11 +85,11 @@ def home():
 }
 
         # Serialize the input data into json string
-        body = (json.dumps(data))
+        body = str.encode(json.dumps(data))
 # str.encode
         # Formulate the request
         #req = urllib.request.Request(URL, body, HEADERS)
-        req = urllib.request.Request(BRAIN_URL, body, HEADERS)
+        req = urllib.request.Request(Bayesian_URL, body, HEADERS)
 
         # Send this request to the AML service and render the results on page
         try:
@@ -147,15 +143,38 @@ def about():
         message='Your application description page.'
     )
 
+@app.route('/lstm2')
+def lstm2():
+    """Renders the LSTM page."""
+    return render_template(
+        'lstm2.html',
+        title='LSTM',
+        year=datetime.now().year,
+        message='Your LSTM page.'
+    )
+
+@app.route('/tableau')
+def tableau():
+    """Renders the LSTM page."""
+    return render_template(
+        'tableau.html',
+        title='Market Data',
+        year=datetime.now().year,
+        message='Your market data page.'
+    )
+
 def do_something_pretty(jsondata):
     """We want to process the AML json result to be more human readable and understandable"""
     import itertools # for flattening a list of tuples below
 
     # We only want the first array from the array of arrays under "Value" 
     # - it's cluster assignment and distances from all centroid centers from k-means model
-    value = jsondata["Results"]["output1"][0]
+    value = jsondata["Results"]["output1"]["value"]["Values"][0]
     # valuelen = len(value)
     print(value)
+
+    scored_label = value[18]
+    
     # Convert values (a list) to a list of tuples [(cluster#,distance),...]
     # valuetuple = list(zip(range(valuelen-1), value[1:(valuelen)]))
     # Convert the list of tuples to one long list (flatten it)
@@ -167,8 +186,8 @@ def do_something_pretty(jsondata):
     # Build a placeholder for the cluster#,distance values
     #repstr = '<tr><td>%d</td><td>%s</td></tr>' * (valuelen-1)
     # print(repstr)
-    output='For the given features:' "Our Algorithm would calculate the T+1 close price to be: "+ value["Scored Labels"]
+    output_bayesian=f'Our Bayesian linear regression model would predict a value of {str((float(scored_label)*294.433746) + 43.90625)}'
     # Build the entire html table for the results data representation
     #tablestr = 'Cluster assignment: %s<br><br><table border="1"><tr><th>Cluster</th><th>Distance From Center</th></tr>'+ repstr + "</table>"
     #return tablestr % data
-    return output
+    return output_bayesian

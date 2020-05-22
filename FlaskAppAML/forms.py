@@ -18,6 +18,3 @@ class SubmissionForm(Form):
     Prior_Day_Vert_Delta_Ratio = StringField('Title', [validators.Length(min=0, max=30)])
     Retracement_Signal = StringField('Title', [validators.Length(min=0, max=30)])
     Prior_Day_Derivative = StringField('Title', [validators.Length(min=0, max=30)])
-    Tpls1Close = StringField('Title', [validators.Length(min=0, max=30)])
-    Tpls2Close = StringField('Title', [validators.Length(min=0, max=30)])
-    Tpls3Close = StringField('Title', [validators.Length(min=0, max=30)])

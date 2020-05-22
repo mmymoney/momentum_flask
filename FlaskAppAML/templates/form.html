@@ -1,7 +1,7 @@
 ﻿{% extends "layout.html" %}
 
 {% block content %}
-<h2>Determine the T+1 close price based on associated features of SPY</h2>
+<h2>Determine the T+1 close price based on associated features of SPY at time T</h2>
 <form method=post>
     <dl>
         <p>
@@ -89,21 +89,6 @@
             What was the derivative of the priod day vertical delta ratio (-sin(x))?<br /><br />
             {{form.Prior_Day_Derivative}}
         </p>
-        <p>
-        <h3>T+1 Close Price</h3> 
-        What was the difference in volume between the date you've selected and 1 day prior?<br /><br />
-          {{form.Tpls1Close}}
-      </p>
-      <p>
-          <h3>T+2 Close Price</h3> 
-          What was the difference in close price between the date you've selected and 1 day prior<br /><br />
-          {{form.Tpls2Close}}
-      </p>
-      <p>
-          <h3>T+3 Close Price</h3> 
-          What was the difference in open price between the date you've selected and 1 day prior<br /><br />
-          {{form.Tpls3Close}}
-      </p>
     </dl>
     <p><input type="submit" value="submit"</p>
  </form>

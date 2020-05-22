@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<p>
+    Welcome to our Single Step LSTM Model! Below we will go through the design, implementation, and analysis of the 
+    results we obtained from our LSTM model step by step on a very high level. For more specifics, please 
+    click on the linked attachment to our notebook.
+    <br>
+    <b>Data Preparation</b><br>
+    Our team decided to create 18 Features (5 given and 13 calculated) for our model dataset. These calculated Features
+    are tied to the stock price at closing and the day trading volume. As it turns out, each feature is positively correlated 
+    with each other and the inputs on which they are calculated (see below for pandas dataframe of our dataset).<br>
+    <hr><img src="/static/images/pandas_df.png" alt="pandas dataframe">
+    <hr><b>Model Creation and Compile</b><br>
+    To keep it simple and understandable, our LSTM model takes in our multivariate feature set and target variable in an 
+    "input shape" of (number of training values, the look back period, STEPS). Steps in this case meaning prediction period, which is 
+    1 future day, and look back period being 200 days. Thus after spliting our dataset values into 80/20 training to validation set respectively, our dataset 
+    is left with the following shape: 5300, 200, 1. 
+    <hr> For the LSTM Model, a train-test-split is inclusive of the target value as the model computes and trains on its own calculation
+    of the forward looking period (1 day) while it runs thus the following is our assigned training and validation sets:<br>
+    <img src="/static/images/train_val.png" alt="model summary"><br>
+    The model's sequential layering is completed with the LSTM model layer (defaulted to a linear activation) and an output of 1, and optimized with RMS:
+    <hr><img src="/static/images/model_summary.png" alt="model summary">
+    <hr><b>Model Fit</b><br>
+    After tweaking the epochs and steps per epoch several times, we run it on 10 epochs (running a total of 30 minutes!). The training and validation loss that 
+    is being displayed is translated as evidence of model fit. In our case, the training loss is consistently less than the 
+    validation loss which is good evidence our model is overfit and not being able to generalize to "unseen" data. 
+    <hr><img src="/static/images/model_epochs.png" alt="model epochs"><br>
+    Using TensorBoard, we can further see the downward trend of the training loss and consistently higher validation loss:
+    <hr><img src="/static/images/tensorboard.png" alt="tensorboard">
+    <hr> This analysis is confirmed as we take a look at the following illustrations we built to show the model prediction versus actual value.
+    <hr><img src="/static/images/prediction_1.png" alt="prediction1">
+    <img src="/static/images/prediction_2.png" alt="prediction2">
+    <img src="/static/images/prediction_3.png" alt="prediction3">
+    <hr><b> Next Steps</b>
+    <hr> As numerous different changes can be made to give our model a better fit, these are a few next steps we would take:
+    <hr>1. Simplify our Featureset to make sure overfitting does not occur due to too much positive linearity between the datapoints are 
+    affirming a "trend" which our model fails to adjust for.
+    <hr>2. Decrease the lookback window so our model does not fit on too much history while training 
+    <hr>3. Add another LSTM Layer 
+    <hr>Thanks for following 
+
+</p>
+
+{% endblock %}
