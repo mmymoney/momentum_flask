@@ -1,15 +1,9 @@
 ﻿{% extends "layout.html" %}
 
 {% block content %}
-<h2>Determine the T+1 close price based on a given date and associated features of SPY</h2>
+<h2>Determine the T+1 close price based on associated features of SPY</h2>
 <form method=post>
     <dl>
-        <p>
-            <h3>Size</h3>
-            Enter the date for which you'd like to predict the T+1 close price. <br/><br/>
-            {{form.Date}}
-        </p>
-
         <p>
             <h3>Open Price</h3> 
           What was the open price on the date you've selected?<br /><br />

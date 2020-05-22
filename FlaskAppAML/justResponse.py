@@ -6,8 +6,6 @@ data = {
                 "input1":
                 [
                     {
-                            'Column 0': "1",   
-                            'Date': "",   
                             'Open': "1",   
                             'High': "1",   
                             'Low': "1",   

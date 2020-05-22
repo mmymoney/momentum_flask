@@ -38,8 +38,6 @@ def home():
   "Inputs": {
     "input1": {
       "ColumnNames": [
-        "Column 0",
-        "Date",
         "Open",
         "High",
         "Low",
@@ -63,50 +61,26 @@ def home():
       ],
       "Values": [
         [
-          # "0",
-          # "5/31/2020",
-          # form.Open.data,
-          # form.High.data,
-          # form.Low.data,
-          # form.Close.data,
-          # form.Volume.data,
-          # form.T3_Vol_Diff.data,
-          # form.T3_Close_Diff.data,
-          # form.T3_Open_Diff.data,
-          # form.T2_Vol_Diff.data,
-          # form.T2_Close_Diff.data,
-          # form.T2_Open_Diff.data,
-          # form.T1_Vol_Diff.data,
-          # form.T1_Close_Diff.data,
-          # form.T1_Open_Diff.data,
-          # form.Prior_Day_Vert_Delta_Ratio.data,
-          # form.Retracement_Signal.data,
-          # form.Prior_Day_Derivative.data,
-          # "0",
-          # "0",
-          # "0"
-          "0",
-          "5/31/2020 12:00:00 AM",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0"
+          form.Open.data,
+          form.High.data,
+          form.Low.data,
+          form.Close.data,
+          form.Volume.data,
+          form.T3_Vol_Diff.data,
+          form.T3_Close_Diff.data,
+          form.T3_Open_Diff.data,
+          form.T2_Vol_Diff.data,
+          form.T2_Close_Diff.data,
+          form.T2_Open_Diff.data,
+          form.T1_Vol_Diff.data,
+          form.T1_Close_Diff.data,
+          form.T1_Open_Diff.data,
+          form.Prior_Day_Vert_Delta_Ratio.data,
+          form.Retracement_Signal.data,
+          form.Prior_Day_Derivative.data,
+          0,
+          0,
+          0
         ]
       ]
     }
@@ -193,7 +167,7 @@ def do_something_pretty(jsondata):
     # Build a placeholder for the cluster#,distance values
     #repstr = '<tr><td>%d</td><td>%s</td></tr>' * (valuelen-1)
     # print(repstr)
-    output='For the given date and relevant features: '+value["Date"]+ "<br/>Our Algorithm would calculate the T+1 close price to be: "+ value["Scored Labels"]
+    output='For the given features:' "Our Algorithm would calculate the T+1 close price to be: "+ value["Scored Labels"]
     # Build the entire html table for the results data representation
     #tablestr = 'Cluster assignment: %s<br><br><table border="1"><tr><th>Cluster</th><th>Distance From Center</th></tr>'+ repstr + "</table>"
     #return tablestr % data

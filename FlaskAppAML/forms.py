@@ -1,7 +1,6 @@
 from wtforms import Form, StringField, TextAreaField, validators
 
 class SubmissionForm(Form):
-    Date = StringField('Title', [validators.Length(min=0, max=30)])
     Open = StringField('Title', [validators.Length(min=0, max=30)])
     High = StringField('Title', [validators.Length(min=0, max=30)])
     Low = StringField('Title', [validators.Length(min=0, max=30)])
